@@ -26,7 +26,7 @@ export default async function AdminDashboard() {
 
   return (
     <div className="fade-up space-y-8">
-      <header className="relative overflow-hidden rounded-2xl border border-line bg-panel p-8 shadow-[0_8px_24px_rgba(27,25,21,0.06)] md:p-10">
+      <header className="relative overflow-hidden rounded-2xl border border-line bg-panel p-6 shadow-[0_8px_24px_rgba(27,25,21,0.06)] sm:p-8 md:p-10">
         <div aria-hidden className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-foreground/[0.04]" />
         <p className="relative text-[11px] uppercase tracking-[0.24em] text-muted">
           {new Date().toLocaleDateString("id-ID", {
@@ -36,11 +36,11 @@ export default async function AdminDashboard() {
             year: "numeric",
           })}
         </p>
-        <h1 className="relative mt-3 font-serif text-5xl leading-tight">{greeting()}, Lecturer.</h1>
+        <h1 className="relative mt-3 font-serif text-4xl leading-tight sm:text-5xl">{greeting()}, Lecturer.</h1>
         <p className="relative mt-3 text-muted">Pantau materi, tugas, dan pengumpulan.</p>
       </header>
 
-      <section className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <section className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
         <Stat value={String(students.length)} label="Students" />
         <Stat value={String(courses.length)} label="Courses" />
         <Stat value={String(assignments.length)} label="Assignments" />
@@ -133,12 +133,12 @@ export default async function AdminDashboard() {
               .map((a) => {
                 const course = courses.find((c) => c.id === a.course_id);
                 return (
-                  <div key={a.id} className="flex items-center justify-between gap-4 py-5">
-                    <div>
+                  <div key={a.id} className="flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0">
                       <p className="text-[11px] uppercase tracking-[0.2em] text-muted">{course?.code}</p>
                       <h3 className="font-serif text-lg">{a.title}</h3>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                       <StatusBadge status="active" label={statusLabel("active")} />
                       <Btn href={`/admin/assignments/${a.id}`} className="border border-line-strong bg-transparent text-foreground hover:bg-foreground hover:text-background">
                         Kelola →

@@ -9,8 +9,12 @@ export function middleware(request: NextRequest) {
   if (!isAuthed && (pathname.startsWith("/admin") || pathname.startsWith("/student"))) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
-  // sudah login jangan ke /login /register
-  if (isAuthed && (pathname === "/login" || pathname === "/register")) {
+  // pendaftaran mandiri dinonaktifkan — akun dibuatkan dosen/admin
+  if (pathname === "/register" || pathname.startsWith("/register/")) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+  // sudah login jangan ke /login
+  if (isAuthed && pathname === "/login") {
     // role cek ditangani di page (getSessionUser) biar Supabase UUID jalan;
     // ponytail: mock fallback tetap pakai cookie u-admin check di page
     return NextResponse.next();

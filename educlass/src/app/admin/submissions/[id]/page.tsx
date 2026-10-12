@@ -82,7 +82,7 @@ export default async function AdminGradeSubmission({
         <p className="text-[11px] uppercase tracking-[0.24em] text-muted">
           {course?.code} — {assignment.title}
         </p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight">
+        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">
           Penilaian.
         </h1>
         <p className="mt-2 text-sm text-muted">
@@ -208,8 +208,8 @@ export default async function AdminGradeSubmission({
         </div>
 
         <div className="mt-16 border-t border-line pt-10">
-          <div className="flex flex-wrap items-end justify-between gap-8">
-            <div className="max-w-md">
+          <div className="flex flex-col gap-8 lg:flex-row lg:flex-wrap lg:items-end lg:justify-between">
+            <div className="w-full max-w-md">
               <p className="text-[11px] uppercase tracking-[0.2em] text-muted">Feedback keseluruhan</p>
               <TextArea
                 name="submissionFeedback"
@@ -219,7 +219,7 @@ export default async function AdminGradeSubmission({
                 className="mt-3 bg-panel p-4"
               />
             </div>
-            <Btn type="submit">Simpan Nilai →</Btn>
+            <Btn type="submit" className="w-full sm:w-auto">Simpan Nilai →</Btn>
           </div>
         </div>
       </form>

@@ -66,14 +66,14 @@ export default async function AdminStudents() {
     <div className="fade-up">
       <header className="border-b border-line pb-10">
         <p className="text-[11px] uppercase tracking-[0.24em] text-muted">Manajemen</p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight">Students.</h1>
+        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">Students.</h1>
         <p className="mt-3 text-muted">Daftar mahasiswa terdaftar.</p>
       </header>
 
       <section className="mt-12">
         <SectionHeading index="01" title="Tambah Siswa" sub="Buat akun" />
         <form action={addStudent} className="max-w-3xl space-y-6">
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-6 min-[560px]:grid-cols-2 lg:grid-cols-3">
             <Field label="Nama" htmlFor="new-name">
               <TextInput id="new-name" name="name" placeholder="Nama lengkap" required />
             </Field>
@@ -89,7 +89,7 @@ export default async function AdminStudents() {
           </Field>
           <Btn
             type="submit"
-            className="border border-line-strong bg-transparent text-foreground hover:bg-foreground hover:text-background"
+            className="w-full border border-line-strong bg-transparent text-foreground hover:bg-foreground hover:text-background sm:w-auto"
           >
             + Tambahkan Siswa
           </Btn>
@@ -120,7 +120,7 @@ export default async function AdminStudents() {
                       <summary className="cursor-pointer list-none text-xs text-muted hover:text-foreground">
                         Ubah
                       </summary>
-                      <form action={editStudent} className="absolute right-0 z-10 mt-4 w-64 space-y-3 border border-line bg-panel p-4">
+                      <form action={editStudent} className="absolute left-0 z-10 mt-4 w-56 max-w-[calc(100vw-2rem)] space-y-3 border border-line bg-panel p-4 shadow-lg sm:left-auto sm:right-0 sm:w-64">
                         <input type="hidden" name="id" value={s.id} />
                         <TextInput name="name" defaultValue={s.name} aria-label="Nama" required />
                         <TextInput name="nim" defaultValue={s.nim ?? ""} aria-label="NIM" required />
@@ -131,7 +131,7 @@ export default async function AdminStudents() {
                       <summary className="cursor-pointer list-none text-xs text-muted hover:text-foreground">
                         Reset sandi
                       </summary>
-                      <form action={resetStudentPassword} className="absolute right-0 z-10 mt-4 w-64 space-y-3 border border-line bg-panel p-4">
+                      <form action={resetStudentPassword} className="absolute left-0 z-10 mt-4 w-56 max-w-[calc(100vw-2rem)] space-y-3 border border-line bg-panel p-4 shadow-lg sm:left-auto sm:right-0 sm:w-64">
                         <input type="hidden" name="id" value={s.id} />
                         <TextInput name="password" type="text" placeholder="Password baru" required />
                         <Btn type="submit">Setel ulang</Btn>
@@ -141,7 +141,7 @@ export default async function AdminStudents() {
                       <summary className="cursor-pointer list-none text-xs text-muted hover:text-foreground">
                         Hapus
                       </summary>
-                      <form action={deleteStudent} className="absolute right-0 z-10 mt-4 w-64 space-y-3 border border-line bg-panel p-4">
+                      <form action={deleteStudent} className="absolute left-0 z-10 mt-4 w-56 max-w-[calc(100vw-2rem)] space-y-3 border border-line bg-panel p-4 shadow-lg sm:left-auto sm:right-0 sm:w-64">
                         <input type="hidden" name="id" value={s.id} />
                         <p className="text-xs">
                         Akun dan seluruh jawabannya dihapus permanen. Ketik NIM untuk konfirmasi.

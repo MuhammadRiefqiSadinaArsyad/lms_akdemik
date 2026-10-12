@@ -1,14 +1,17 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getSessionUser } from "@/lib/auth";
-import { Avatar } from "@/components/ui";
 import { NavLink } from "@/components/NavLink";
+import { MobileMenu } from "@/components/MobileMenu";
+import { UserMenu } from "@/components/UserMenu";
+import { HeaderShadow } from "@/components/HeaderShadow";
+import { IconBook, IconGrade, IconHome, IconTask } from "@/components/NavIcons";
 
 const links = [
-  { href: "/student/dashboard", label: "Beranda" },
-  { href: "/student/courses", label: "Mata Kuliah" },
-  { href: "/student/assignments", label: "Tugas" },
-  { href: "/student/results", label: "Nilai" },
+  { href: "/student/dashboard", label: "Beranda", icon: <IconHome />, index: "01" },
+  { href: "/student/courses", label: "Mata Kuliah", icon: <IconBook />, index: "02" },
+  { href: "/student/assignments", label: "Tugas", icon: <IconTask />, index: "03" },
+  { href: "/student/results", label: "Nilai", icon: <IconGrade />, index: "04" },
 ];
 
 export default async function StudentLayout({
@@ -21,34 +24,50 @@ export default async function StudentLayout({
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-20 border-b border-line bg-background/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
-          <Link href="/student/dashboard" className="font-serif text-xl">
-            EduClass
+      <header className="sticky top-0 z-20 border-b border-line bg-background transition-shadow duration-300 md:bg-background/90 md:backdrop-blur">
+        {/* solid di mobile: backdrop-blur menjebak overlay fixed drawer menjadi setinggi header */}
+        <HeaderShadow />
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
+          <Link
+            href="/student/dashboard"
+            className="flex shrink-0 items-baseline gap-2.5 transition-opacity duration-200 hover:opacity-70"
+            aria-label="EduClass — Beranda"
+          >
+            <span className="font-serif text-[22px] leading-none">EduClass</span>
+            <span className="hidden border-l border-line-strong pl-2.5 text-[10px] uppercase tracking-[0.22em] text-muted min-[480px]:block">
+              LMS Akademik
+            </span>
           </Link>
-          <nav className="flex items-center gap-8 text-sm">
+          <nav
+            aria-label="Navigasi utama"
+            className="hidden items-center gap-1 border border-line bg-panel p-1 md:flex"
+          >
             {links.map((l) => (
-              <span key={l.href} className="hidden sm:block">
-                <NavLink href={l.href} label={l.label} variant="bar" />
-              </span>
+              <NavLink
+                key={l.href}
+                href={l.href}
+                label={l.label}
+                variant="bar"
+                icon={l.icon}
+                index={l.index}
+              />
             ))}
           </nav>
-          <div className="flex items-center gap-3">
-            <div className="text-right">
-              <p className="text-sm font-medium leading-none">{user.name}</p>
-              <p className="mt-1 text-xs text-muted">NIM {user.nim}</p>
+          <div className="flex items-center gap-2.5">
+            <div className="hidden md:block">
+              <UserMenu name={user.name} sub={`NIM ${user.nim}`} />
             </div>
-            <Avatar name={user.name} />
+            <MobileMenu
+              links={links}
+              userName={user.name}
+              userSub={`NIM ${user.nim}`}
+              className="md:hidden"
+            />
           </div>
         </div>
-        <nav className="flex gap-5 overflow-x-auto border-t border-line px-6 text-sm sm:hidden">
-          {links.map((l) => (
-            <NavLink key={l.href} href={l.href} label={l.label} variant="bar" />
-          ))}
-        </nav>
       </header>
-      <main className="mx-auto max-w-6xl px-6 py-14">{children}</main>
-      <footer className="mx-auto flex max-w-6xl items-center justify-between border-t border-line px-6 py-6 text-[11px] uppercase tracking-[0.2em] text-muted">
+      <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-14">{children}</main>
+      <footer className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 border-t border-line px-4 py-6 text-[11px] uppercase tracking-[0.2em] text-muted sm:px-6">
         <span>© {new Date().getFullYear()} EduClass</span>
         <div className="flex items-center gap-5">
           <Link href="/account" className="u-link">

@@ -24,6 +24,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* cegah judul panjang bikin halaman melebar di HP */
+h1, h2, h3 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -45,8 +51,31 @@ body {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+@keyframes slide-in-right {
+  from { opacity: 0.4; transform: translateX(48px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes slide-out-right {
+  from { opacity: 1; transform: none; }
+  to   { opacity: 0.4; transform: translateX(48px); }
+}
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
 .fade-up   { animation: fade-up 0.45s ease both; }
 .fade-in   { animation: fade-in 0.5s ease both; }
+.fade-out  { animation: fade-out 0.22s ease both; }
+.drawer-in { animation: slide-in-right 0.3s ease both; }
+.drawer-out { animation: slide-out-right 0.22s ease both; }
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .fade-in, .fade-out, .drawer-in, .drawer-out, .img-reveal { animation: none; }
+}
+
+/* elevasi header saat halaman di-scroll */
+header.is-scrolled {
+  box-shadow: 0 10px 30px rgba(27, 25, 21, 0.08);
+}
 .d-1 { animation-delay: 0.06s; }
 .d-2 { animation-delay: 0.14s; }
 .d-3 { animation-delay: 0.22s; }

@@ -27,6 +27,7 @@ export default async function StudentAssignmentPage({
   const submission = allSubmissions.find((s) => s.student_id === user.id);
   const answers = submission ? await listAnswers(submission.id) : [];
 
+  // eslint-disable-next-line react-hooks/purity -- server component: waktu request, bukan render client
   const now = Date.now();
   const start = new Date(assignment.start_time).getTime();
   const deadline = new Date(assignment.deadline).getTime();
@@ -42,7 +43,7 @@ export default async function StudentAssignmentPage({
       {/* header dengan status + countdown */}
       <header className="border-b border-line pb-10">
         <p className="text-[11px] uppercase tracking-[0.24em] text-muted">{course?.code} — Tugas</p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight">{assignment.title}.</h1>
+        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">{assignment.title}.</h1>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">{assignment.description}</p>
         {assignment.requirement_path && (
           <p className="mt-4 text-sm">
@@ -57,7 +58,7 @@ export default async function StudentAssignmentPage({
             </a>
           </p>
         )}
-        <dl className="mt-8 grid max-w-lg grid-cols-2 gap-x-10 gap-y-4 text-sm">
+        <dl className="mt-8 grid max-w-lg grid-cols-1 gap-x-10 gap-y-4 text-sm min-[420px]:grid-cols-2">
           <div>
             <dt className="text-[11px] uppercase tracking-[0.2em] text-muted">Mulai</dt>
             <dd className="mt-1 font-medium">{fmtDateTime(assignment.start_time)}</dd>
@@ -88,7 +89,7 @@ export default async function StudentAssignmentPage({
         <section className="py-14">
           <SectionHeading index="✓" title="Jawaban kamu telah terkirim" sub="Submission diterima" />
           <div className="grid gap-10 md:grid-cols-[2fr_1fr]">
-            <div className="space-y-10">
+            <div className="min-w-0 space-y-10">
               {questions.map((q, qi) => {
                 const ans = answers.find((a) => a.question_id === q.id);
                 const opts = options.filter((o) => o.question_id === q.id);
@@ -120,7 +121,7 @@ export default async function StudentAssignmentPage({
                 );
               })}
             </div>
-            <aside className="border-l border-line pl-10">
+            <aside className="border-t border-line pt-8 md:border-l md:border-t-0 md:pl-10 md:pt-0">
               <p className="text-[11px] uppercase tracking-[0.2em] text-muted">Pengumpul</p>
               <p className="mt-2 font-serif text-xl">{user.name}</p>
               <p className="text-sm text-muted">NIM {user.nim}</p>
@@ -279,7 +280,7 @@ async function AssignmentForm({
 
       {/* ringkasan pengumpul + submit */}
       <div className="mt-16 border-t border-line pt-10">
-        <div className="flex flex-wrap items-end justify-between gap-8">
+        <div className="flex flex-col gap-8 lg:flex-row lg:flex-wrap lg:items-end lg:justify-between">
           <div>
             <p className="text-[11px] uppercase tracking-[0.2em] text-muted">
               {isEdit ? "Perbaiki jawaban?" : "Ready to submit?"}
@@ -296,7 +297,7 @@ async function AssignmentForm({
               {userName} <span className="text-sm text-muted">· NIM {nim}</span>
             </p>
           </div>
-          <Btn type="submit" className="min-w-52">{isEdit ? "Kirim Ulang Jawaban →" : "Submit Answer →"}</Btn>
+          <Btn type="submit" className="w-full sm:min-w-52 lg:w-auto">{isEdit ? "Kirim Ulang Jawaban →" : "Submit Answer →"}</Btn>
         </div>
       </div>
     </form>

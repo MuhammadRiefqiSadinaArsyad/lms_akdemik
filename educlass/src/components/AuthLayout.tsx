@@ -10,7 +10,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
       </div>
       {/* mobile: form dulu, visual jadi banner pendek */}
       <div className="lg:hidden">
-        <main className="min-h-screen px-6 pb-4 pt-8">{children}</main>
+        <main className="min-h-screen min-w-0 overflow-x-clip px-5 pb-4 pt-8 sm:px-6">{children}</main>
         <VisualPanel banner />
       </div>
     </div>
@@ -19,7 +19,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
 
 export function AuthBrand({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={compact ? "" : "mb-16"}>
+    <div className={compact ? "mb-10 sm:mb-12" : "mb-10 sm:mb-16"}>
       <p className="font-serif text-2xl">EduClass</p>
       <p className="mt-1 text-[11px] uppercase tracking-[0.24em] text-muted">
         Learning &amp; Assessment Platform

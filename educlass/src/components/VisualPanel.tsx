@@ -24,7 +24,7 @@ export function VisualPanel({ banner = false }: { banner?: boolean }) {
         className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#f3f0e6]/[0.06] blur-3xl"
       />
 
-      <div className="relative flex h-full flex-col justify-between p-10 lg:p-14">
+      <div className="relative flex h-full flex-col justify-between gap-6 p-6 sm:p-10 lg:p-14">
         <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-[#f3f0e6]/70">
           <span className="font-serif text-base normal-case tracking-normal text-[#f3f0e6]">
             EduClass
@@ -37,7 +37,7 @@ export function VisualPanel({ banner = false }: { banner?: boolean }) {
         </div>
 
         {banner ? (
-          <p className="font-serif text-3xl leading-tight">
+          <p className="font-serif text-2xl leading-tight sm:text-3xl">
             Learn. Practice. Submit.
           </p>
         ) : (

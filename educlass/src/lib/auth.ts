@@ -9,18 +9,6 @@ export async function getSessionUser(): Promise<Profile | null> {
   const store = await cookies();
   const id = store.get(SESSION_COOKIE)?.value;
   if (!id) {
-    // fallback: coba Supabase Auth session (mis. OAuth) bila ada
-    if (isSupabaseConfigured) {
-      try {
-        const supabase = getSupabase();
-        const { data } = await supabase!.auth.getUser();
-        if (data.user) {
-          const client = getSupabaseAdmin() ?? supabase;
-          const { data: row } = await client!.from("profiles").select("*").eq("id", data.user.id).single();
-          if (row) return row as Profile;
-        }
-      } catch {}
-    }
     return null;
   }
   // ponytail: Supabase bila env ada — ambil profiles dari Supabase dulu, fallback mock
@@ -95,6 +83,8 @@ export async function registerStudent(input: {
   email: string;
   password: string;
 }): Promise<{ profile: Profile } | { error: string }> {
+  // Hanya dipanggil dari sisi dosen/admin (/admin/students).
+  // Pendaftaran mandiri publik dinonaktifkan.
   const email = input.email.trim().toLowerCase();
   if (!input.name.trim() || !input.nim.trim() || !email || !input.password) return { error: "Semua kolom wajib diisi." };
   if (isSupabaseConfigured) {

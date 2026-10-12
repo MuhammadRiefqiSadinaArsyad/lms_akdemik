@@ -30,7 +30,7 @@ export default async function AdminAssignmentSubmissions({
         <p className="text-[11px] uppercase tracking-[0.24em] text-muted">
           {course?.code} — Pengumpulan
         </p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight">{assignment.title}.</h1>
+        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">{assignment.title}.</h1>
         <p className="mt-3 text-muted">Daftar jawaban yang masuk.</p>
       </header>
 

@@ -46,7 +46,7 @@ export default async function AdminMaterials() {
     <div className="fade-up">
       <header className="border-b border-line pb-10">
         <p className="text-[11px] uppercase tracking-[0.24em] text-muted">Manajemen</p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight">Materials.</h1>
+        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">Materials.</h1>
         <p className="mt-3 text-muted">Unggah materi PDF untuk tiap mata kuliah.</p>
       </header>
 

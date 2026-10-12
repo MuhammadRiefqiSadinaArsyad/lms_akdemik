@@ -27,7 +27,7 @@ export default async function ForgotPassword({
     <AuthLayout>
       <AuthBrand />
       <div>
-        <h1 className="font-serif text-5xl leading-tight xl:text-6xl">Lupa password.</h1>
+        <h1 className="font-serif text-4xl leading-tight sm:text-5xl xl:text-6xl">Lupa password.</h1>
         <p className="mt-3 max-w-md text-sm text-muted">
           Masukkan email akunmu. Kami kirim tautan untuk membuat password baru.
         </p>

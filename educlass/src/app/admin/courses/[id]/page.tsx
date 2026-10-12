@@ -67,7 +67,7 @@ export default async function AdminCourseDetail({
     <div className="fade-up">
       <header className="border-b border-line pb-10">
         <p className="text-[11px] uppercase tracking-[0.24em] text-muted">{course.code}</p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight">{course.name}.</h1>
+        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">{course.name}.</h1>
         <p className="mt-3 text-muted">{course.description}</p>
         <div className="mt-8 flex gap-4">
           <Btn

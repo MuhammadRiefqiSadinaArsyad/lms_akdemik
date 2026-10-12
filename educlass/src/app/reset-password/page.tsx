@@ -12,7 +12,7 @@ export default async function ResetPassword({
     <AuthLayout>
       <AuthBrand />
       <div>
-        <h1 className="font-serif text-5xl leading-tight xl:text-6xl">Password baru.</h1>
+        <h1 className="font-serif text-4xl leading-tight sm:text-5xl xl:text-6xl">Password baru.</h1>
         <p className="mt-3 max-w-md text-sm text-muted">
           Buat password baru untuk akunmu.
         </p>

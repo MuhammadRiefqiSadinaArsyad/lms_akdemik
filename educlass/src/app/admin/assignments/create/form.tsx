@@ -117,7 +117,7 @@ export function AssignmentCreateForm({
         <p className="text-[11px] uppercase tracking-[0.24em] text-muted">Soal-soal</p>
         <div className="mt-8 space-y-12">
           {questions.map((q, qi) => (
-            <div key={qi} className="border border-line p-6">
+            <div key={qi} className="min-w-0 border border-line p-4 sm:p-6">
               <div className="flex items-center justify-between gap-4">
                 <p className="font-serif text-lg">Soal {String(qi + 1).padStart(2, "0")}</p>
                 {questions.length > 1 && (
@@ -131,7 +131,7 @@ export function AssignmentCreateForm({
                 )}
               </div>
 
-              <div className="mt-4 grid gap-4 sm:grid-cols-[1fr_auto_auto]">
+              <div className="mt-4 grid gap-4 min-[480px]:grid-cols-[1fr_auto_auto]">
                 <select
                   value={q.type}
                   onChange={(e) => patch(qi, { type: e.target.value as QuestionDraft["type"] })}
@@ -232,7 +232,7 @@ export function AssignmentCreateForm({
       />
 
       <div className="border-t border-line py-10">
-        <Btn type="submit">Buat Tugas →</Btn>
+        <Btn type="submit" className="w-full sm:w-auto">Buat Tugas →</Btn>
       </div>
     </form>
   );

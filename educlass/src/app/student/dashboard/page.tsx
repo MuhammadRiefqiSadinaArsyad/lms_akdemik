@@ -40,13 +40,13 @@ export default async function StudentDashboard() {
             year: "numeric",
           })}
         </p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight">
+        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">
           {greeting()}, {user.name.split(" ")[0]}.
         </h1>
         <p className="mt-3 text-muted">Continue your learning journey.</p>
       </header>
 
-      <section className="flex flex-wrap items-end justify-between gap-10 border-b border-line py-10">
+      <section className="grid grid-cols-2 gap-3 border-b border-line py-8 sm:gap-4 sm:py-10 lg:grid-cols-4">
         <Stat value={String(courses.length)} label="Mata Kuliah" />
         <Stat value={String(materialsCount)} label="Materi" />
         <Stat value={String(submissions.length)} label="Tugas Terkumpul" />
@@ -75,7 +75,7 @@ export default async function StudentDashboard() {
               <Link
                 key={c.id}
                 href={`/student/courses/${c.id}`}
-                className="group bg-background p-8 transition-colors hover:bg-panel"
+                className="group min-w-0 bg-background p-6 transition-colors hover:bg-panel sm:p-8"
               >
                 <p className="text-[11px] uppercase tracking-[0.22em] text-muted">{c.code}</p>
                 <h3 className="mt-3 font-serif text-2xl leading-snug">{c.name}</h3>
@@ -114,15 +114,15 @@ export default async function StudentDashboard() {
               const course = courses.find((c) => c.id === a.course_id);
               const sub = submissions.find((s) => s.assignment_id === a.id);
               return (
-                <div key={a.id} className="flex flex-wrap items-center justify-between gap-4 py-6">
-                  <div>
+                <div key={a.id} className="flex flex-col gap-4 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+                  <div className="min-w-0">
                     <p className="text-[11px] uppercase tracking-[0.2em] text-muted">{course?.code}</p>
                     <h3 className="mt-1 font-serif text-xl">{a.title}</h3>
                     <p className="mt-1 text-sm text-muted">
                       Tenggat {fmtDateTime(a.deadline)} · {countdown(a.deadline)}
                     </p>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                     {sub ? (
                       <span className="text-xs uppercase tracking-widest text-muted">Sudah dikumpulkan</span>
                     ) : (

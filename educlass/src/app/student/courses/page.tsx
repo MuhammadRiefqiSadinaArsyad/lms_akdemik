@@ -14,7 +14,7 @@ export default async function StudentCourses() {
     <div className="fade-up">
       <header className="border-b border-line pb-10">
         <p className="text-[11px] uppercase tracking-[0.24em] text-muted">Mata Kuliah</p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight">All Courses.</h1>
+        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">All Courses.</h1>
         <p className="mt-3 text-muted">Jelajahi materi dan tugas setiap mata kuliah.</p>
       </header>
 
@@ -26,7 +26,7 @@ export default async function StudentCourses() {
             <Link
               key={c.id}
               href={`/student/courses/${c.id}`}
-              className="group bg-background p-8 transition-colors hover:bg-panel"
+              className="group min-w-0 bg-background p-6 transition-colors hover:bg-panel sm:p-8"
             >
               <p className="text-[11px] uppercase tracking-[0.22em] text-muted">
                 {String(i + 1).padStart(2, "0")} — {c.code}

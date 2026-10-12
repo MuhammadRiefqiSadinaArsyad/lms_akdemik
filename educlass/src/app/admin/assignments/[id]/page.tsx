@@ -276,7 +276,7 @@ export default async function AdminAssignmentDetail({
         <p className="text-[11px] uppercase tracking-[0.24em] text-muted">
           {course?.code} — Tugas
         </p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight">{assignment.title}.</h1>
+        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">{assignment.title}.</h1>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">{assignment.description}</p>
         <dl className="mt-8 grid max-w-lg grid-cols-2 gap-x-10 gap-y-4 text-sm">
           <div>

@@ -123,20 +123,29 @@ export function StatusBadge({
 
 export function Stat({ value, label, sub }: { value: string; label: string; sub?: string }) {
   return (
-    <div className="rounded-2xl border border-line bg-panel p-6 shadow-[0_8px_24px_rgba(27,25,21,0.06)]">
-      <p className="font-serif text-4xl leading-none">{value}</p>
-      <p className="mt-2 text-[11px] uppercase tracking-[0.2em] text-muted">{label}</p>
-      {sub ? <p className="mt-1 text-xs text-muted">{sub}</p> : null}
+    <div className="min-w-0 rounded-2xl border border-line bg-panel p-5 shadow-[0_8px_24px_rgba(27,25,21,0.06)] sm:p-6">
+      <p className="truncate font-serif text-3xl leading-none sm:text-4xl">{value}</p>
+      <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-muted sm:text-[11px] sm:tracking-[0.2em]">{label}</p>
+      {sub ? <p className="mt-1 truncate text-xs text-muted">{sub}</p> : null}
     </div>
   );
 }
 
-export function Avatar({ name, className }: { name: string; className?: string }) {
+export function Avatar({
+  name,
+  size = "md",
+  className,
+}: {
+  name: string;
+  size?: "md" | "lg";
+  className?: string;
+}) {
   return (
     <span
       aria-hidden
       className={cn(
-        "inline-flex h-9 w-9 items-center justify-center rounded-full border border-line-strong bg-panel text-xs font-medium",
+        "inline-flex items-center justify-center rounded-full border border-line-strong bg-panel font-medium",
+        size === "md" ? "h-9 w-9 text-xs" : "h-16 w-16 text-lg",
         className,
       )}
     >
@@ -157,13 +166,13 @@ export function SectionHeading({
   action?: ReactNode;
 }) {
   return (
-    <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-      <div>
+    <div className="mb-6 flex flex-wrap items-end justify-between gap-4 sm:mb-8">
+      <div className="min-w-0">
         <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-muted">
           {index ? `${index} — ` : ""}
           {sub ?? "Section"}
         </p>
-        <h2 className="font-serif text-3xl leading-tight">{title}</h2>
+        <h2 className="font-serif text-2xl leading-tight sm:text-3xl">{title}</h2>
       </div>
       {action}
     </div>
@@ -172,7 +181,7 @@ export function SectionHeading({
 
 export function Empty({ title, desc }: { title: string; desc?: string }) {
   return (
-    <div className="rounded-2xl border border-dashed border-line-strong bg-panel px-8 py-16 text-center shadow-[0_8px_24px_rgba(27,25,21,0.04)]">
+    <div className="rounded-2xl border border-dashed border-line-strong bg-panel px-5 py-12 text-center shadow-[0_8px_24px_rgba(27,25,21,0.04)] sm:px-8 sm:py-16">
       <p className="font-serif text-xl">{title}</p>
       {desc ? <p className="mt-2 text-sm text-muted">{desc}</p> : null}
     </div>
@@ -188,15 +197,15 @@ export function Table({
 }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-line bg-panel shadow-[0_8px_24px_rgba(27,25,21,0.06)]">
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse text-left">
+      <div className="-mx-px overflow-x-auto">
+        <table className="w-full min-w-[640px] border-collapse text-left">
           <thead>
             <tr className="border-b border-line bg-background/60">
               {heads.map((h) => (
                 <th
                   key={h}
                   scope="col"
-                  className="py-3 pl-6 pr-6 text-[10px] font-medium uppercase tracking-[0.2em] text-muted"
+                  className="whitespace-nowrap py-3 pl-4 pr-4 text-[10px] font-medium uppercase tracking-[0.2em] text-muted sm:pl-6 sm:pr-6"
                 >
                   {h}
                 </th>
@@ -211,5 +220,5 @@ export function Table({
 }
 
 export function Td({ className, children }: { className?: string; children: ReactNode }) {
-  return <td className={cn("py-4 pl-6 pr-6 align-middle text-sm", className)}>{children}</td>;
+  return <td className={cn("break-words py-4 pl-4 pr-4 align-middle text-sm sm:pl-6 sm:pr-6", className)}>{children}</td>;
 }

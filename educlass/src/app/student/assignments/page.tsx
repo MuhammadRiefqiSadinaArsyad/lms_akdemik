@@ -26,7 +26,7 @@ export default async function StudentAssignments() {
     <div className="fade-up">
       <header className="border-b border-line pb-10">
         <p className="text-[11px] uppercase tracking-[0.24em] text-muted">Tugas & Quiz</p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight">Assignments.</h1>
+        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">Assignments.</h1>
         <p className="mt-3 text-muted">Kerjakan, kumpulkan, dan pantau nilaimu.</p>
       </header>
 
@@ -43,8 +43,8 @@ export default async function StudentAssignments() {
               const sub = mySubmissions.find((s) => s.assignment_id === a.id);
               const open = eff === "active" || eff === "scheduled";
               return (
-                <div key={a.id} className="flex flex-wrap items-center justify-between gap-4 py-6">
-                  <div>
+                <div key={a.id} className="flex flex-col gap-4 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+                  <div className="min-w-0">
                     <p className="text-[11px] uppercase tracking-[0.2em] text-muted">{course?.code}</p>
                     <h3 className="mt-1 font-serif text-xl">{a.title}</h3>
                     <p className="mt-1 text-sm text-muted">
@@ -52,7 +52,7 @@ export default async function StudentAssignments() {
                       {open ? ` · ${countdown(a.deadline)}` : ""}
                     </p>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                     {sub ? (
                       <span className="text-xs uppercase tracking-widest text-muted">
                         {sub.total_score !== null ? `Nilai ${sub.total_score}` : "Sudah dikumpulkan"}

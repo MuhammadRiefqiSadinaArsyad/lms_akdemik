@@ -32,11 +32,11 @@ export default async function StudentResults() {
     <div className="fade-up">
       <header className="border-b border-line pb-10">
         <p className="text-[11px] uppercase tracking-[0.24em] text-muted">Nilai</p>
-        <h1 className="mt-3 font-serif text-5xl leading-tight">Your Results.</h1>
+        <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">Your Results.</h1>
         <p className="mt-3 text-muted">Pantau nilai dan feedback dari dosen.</p>
       </header>
 
-      <section className="flex flex-wrap items-end gap-16 border-b border-line py-10">
+      <section className="grid grid-cols-2 gap-3 border-b border-line py-8 sm:gap-4 sm:py-10 lg:max-w-xl">
         <Stat value={String(rows.length)} label="Tugas Dinilai" />
         {avg !== null && <Stat value={String(avg)} label="Rata-rata Nilai" />}
       </section>
@@ -47,13 +47,13 @@ export default async function StudentResults() {
         ) : (
           <div className="divide-y divide-line">
             {rows.map(({ s, a, course }) => (
-              <div key={s.id} className="flex flex-wrap items-center justify-between gap-4 py-6">
-                <div>
+              <div key={s.id} className="flex flex-col gap-4 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+                <div className="min-w-0">
                   <p className="text-[11px] uppercase tracking-[0.2em] text-muted">{course?.code}</p>
                   <h3 className="mt-1 font-serif text-xl">{a.title}</h3>
                   <p className="mt-1 text-sm text-muted">Dikumpulkan {fmtDateTime(s.submitted_at)}</p>
                 </div>
-                <div className="flex items-baseline gap-8">
+                <div className="flex flex-wrap items-center gap-4 sm:gap-8">
                   <p className="font-serif text-4xl">{s.total_score}</p>
                   <Btn
                     href={`/student/assignments/${a.id}`}
