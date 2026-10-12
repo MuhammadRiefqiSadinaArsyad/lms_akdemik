@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f4ee;
+  --panel: #fbfaf6;
+  --foreground: #1b1915;
+  --muted: #645e4e;
+  --line: #ddd8c8;
+  --line-strong: #c8c0ad;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-panel: var(--panel);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --font-serif: var(--font-editorial);
+  --font-sans: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0.01em;
+}
+
+::selection {
+  background: #1b1915;
+  color: #f6f4ee;
+}
+
+/* ---- subtle motion (200–500ms, no bounce) ---- */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fade-up   { animation: fade-up 0.45s ease both; }
+.fade-in   { animation: fade-in 0.5s ease both; }
+.d-1 { animation-delay: 0.06s; }
+.d-2 { animation-delay: 0.14s; }
+.d-3 { animation-delay: 0.22s; }
+.d-4 { animation-delay: 0.3s; }
+
+/* ---- editorial underline on hover ---- */
+.u-link {
+  position: relative;
+}
+.u-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.u-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---- image reveal ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .img-reveal {
+    clip-path: inset(0 0 100% 0);
+    animation: reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  }
+}
+@keyframes reveal {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* thin utility borders */
+.hairline { border: 1px solid var(--line); }
+.hairline-t { border-top: 1px solid var(--line); }
+.hairline-b { border-bottom: 1px solid var(--line); }
+
+/* focus ring for keyboard users */
+:focus-visible {
+  outline: 1.5px solid #1b1915;
+  outline-offset: 2px;
+}
